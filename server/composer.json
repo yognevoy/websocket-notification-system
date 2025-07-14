@@ -1,0 +1,12 @@
+{
+    "name": "websocket-notification-system/server",
+    "description": "Real-time notification system using WebSockets.",
+    "require": {
+        "cboden/ratchet": "^0.4.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "NotificationSystem\\": "src/"
+        }
+    }
+}
