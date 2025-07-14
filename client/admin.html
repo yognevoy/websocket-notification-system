@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель администратора - Система уведомлений</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Панель администратора</h1>
+
+    <div class="admin-panel">
+        <div class="box-header">
+            <h2>Отправка уведомлений</h2>
+        </div>
+        <div class="box-content">
+            <div class="notification-form">
+                <textarea id="notification-text" placeholder="Введите текст уведомления..." rows="3"></textarea>
+                <div class="button-group">
+                    <button id="send-notification" class="primary-button">Отправить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification-box">
+        <div class="box-header">
+            <h2>История уведомлений</h2>
+        </div>
+        <div class="box-content">
+            <div id="notification-list" class="notification-list">
+                <div class="empty-message">Нет уведомлений</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="status-box">
+        <div id="connection-status" class="disconnected">Отключено</div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const notificationText = document.getElementById('notification-text');
+        const sendNotificationBtn = document.getElementById('send-notification');
+
+        sendNotificationBtn.addEventListener('click', function () {
+            if (!notificationText.value.trim()) {
+                alert('Пожалуйста, введите текст уведомления');
+                return;
+            }
+
+            if (websocket && websocket.readyState === WebSocket.OPEN) {
+                websocket.send(JSON.stringify({
+                    type: 'notification',
+                    text: notificationText.value
+                }));
+                notificationText.value = '';
+            } else {
+                alert('Нет соединения с сервером');
+            }
+        });
+
+        notificationText.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                sendNotificationBtn.click();
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+</body>
+</html>
