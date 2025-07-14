@@ -1,0 +1,284 @@
+:root {
+    --primary-color: #4e5258;
+    --primary-light: #828890;
+    --primary-dark: #383c43;
+    --success-color: #818589;
+    --error-color: #818589;
+    --warning-color: #818589;
+    --background-color: #1c1e21;
+    --surface-color: #27292d;
+    --text-primary: #dee0e3;
+    --text-secondary: #9ea1a7;
+    --border-color: #414449;
+    --text-tertiary: #85878d;
+    --border-radius: 6px;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --transition-fast: all 0.2s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    line-height: 1.5;
+    font-size: var(--font-size-sm);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: var(--spacing-md);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+h2 {
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.notification-box, .admin-panel {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-lg);
+    overflow: hidden;
+}
+
+.box-header {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--primary-color);
+    color: white;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.box-header h2 {
+    color: white;
+    margin-bottom: 0;
+    font-size: var(--font-size-md);
+}
+
+.box-content {
+    padding: var(--spacing-md);
+}
+
+.notification-list {
+    max-height: 350px;
+    overflow-y: auto;
+    padding: var(--spacing-xs);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--background-color);
+}
+
+.notification-item {
+    background-color: var(--surface-color);
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    animation: fadeIn 0.3s ease;
+    transition: border-color ease-in-out 0.03s, box-shadow ease-in-out 0.03s;
+}
+
+.notification-item:last-child {
+    margin-bottom: 0;
+}
+
+.notification-item:hover {
+    border: 1px solid var(--primary-light);
+}
+
+.notification-text {
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
+.notification-time {
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+    text-align: right;
+}
+
+.empty-message {
+    text-align: center;
+    color: var(--text-tertiary);
+    padding: var(--spacing-lg);
+    font-style: italic;
+    font-size: var(--font-size-sm);
+}
+
+.status-box {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-md);
+}
+
+#connection-status {
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 12px;
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+}
+
+#connection-status::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: var(--spacing-xs);
+}
+
+.connected {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.connected::before {
+    background-color: white;
+    animation: pulse 1.5s infinite;
+}
+
+.disconnected {
+    background-color: var(--error-color);
+    color: white;
+}
+
+.disconnected::before {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.connecting {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.connecting::before {
+    background-color: white;
+    animation: blink 1s infinite;
+}
+
+.notification-form {
+    display: flex;
+    flex-direction: column;
+}
+
+textarea {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-sm);
+    resize: vertical;
+    margin-bottom: var(--spacing-md);
+    font-family: inherit;
+    min-height: 100px;
+}
+
+textarea:focus {
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 2px rgba(69, 112, 218, 0.3);
+    outline: none;
+}
+
+.button-group {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.primary-button:hover {
+    background-color: var(--primary-dark);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.6;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.4;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: var(--spacing-sm);
+    }
+
+    h1 {
+        font-size: var(--font-size-lg);
+    }
+}
